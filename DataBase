@@ -27,12 +27,12 @@ public class UsersDataBase {
 		Connection connection = null;
 		try {
 			Class.forName("org.sqlite.JDBC");
-	        	connection = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\snasiadk\\eclipse-workspace\\DBProject\\bin\\persons.db");
+	        	connection = DriverManager.getConnection("jdbc:sqlite:D:\\bazy\\\\MOJABAZADOPROJEKTU.db");
 
 	        	Statement statement = connection.createStatement();
 	        	statement.setQueryTimeout(30); 
 
-	        	statement.executeUpdate("INSERT INTO Person values('"+prsn.getLogin()+"')");
+	        	statement.executeUpdate("INSERT INTO Users values('"+prsn.getLogin()+"')");
 	        
 		}
 	    	catch(SQLException e){
@@ -58,12 +58,12 @@ public class UsersDataBase {
 		Connection connection = null;
 		try {
 			Class.forName("org.sqlite.JDBC");
-	        	connection = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\snasiadk\\eclipse-workspace\\DBProject\\bin\\persons.db");
+	        	connection = DriverManager.getConnection("jdbc:sqlite:D:\\bazy\\\\MOJABAZADOPROJEKTU.db");
 
 	        	Statement statement = connection.createStatement();
 	        	statement.setQueryTimeout(30); 
 
-	        	statement.executeUpdate("DELETE FROM User WHERE login='"+ prsn.getLogin() + "'");
+	        	statement.executeUpdate("DELETE FROM Users WHERE login='"+ prsn.getLogin() + "'");
 	        
 		}
 	    	catch(SQLException e){
@@ -91,7 +91,7 @@ public class UsersDataBase {
 		Connection connection = null;
 		try {
 			Class.forName("org.sqlite.JDBC");
-	         	connection = DriverManager.getConnection("jdbc:sqlite:C:\\Users\\snasiadk\\eclipse-workspace\\DBProject\\bin\\persons.db");
+	         	connection = DriverManager.getConnection("jdbc:sqlite:D:\\bazy\\MOJABAZADOPROJEKTU.db");
 
 	         	Statement statement = connection.createStatement();
 	         	statement.setQueryTimeout(30); 
