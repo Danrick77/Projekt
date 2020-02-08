@@ -29,6 +29,7 @@ public class Operations {
 			if (User.containsKey(Login) && User.getLogin(Login).getPassword().equals(pass));
 			
 			Boolean doLogout = false;
+			do {
 			System.out.println("[1] lista użytkowników:");
 			System.out.println("[2] Usuń użytkownika:");
 			System.out.println("[3] Dodaj książkę:");
@@ -46,10 +47,25 @@ public class Operations {
 						System.out.println("użytkownika nie ma na liœcie");
 					else
 						System.out.println("Usunięto użytkownika z listy");
-					
+					break;
 			}
-			
+			if ("3".equals(action)) {
+				System.out.println("Podaj tytuł:");
+				
+				System.out.println("Podaj autora:");
+			}
+			if ("6".equals(action)){ 
+			doLogout = true; 
+			doStop = true; 
+			break;
+				while (doLogout == false);
+				} else {
+			System.out.println("Niewłaściwy login lub hasło");
 		}
-		
+	} while (doStop == false);
+	
+	System.out.println("wyjście.");
+	scan.close();
+		}
 	}
 }
