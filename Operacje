@@ -1,0 +1,55 @@
+import java.util.Scanner;
+
+public class Operations {
+	public static void main(String[] args) {
+		System.out.println("Wybierz opcje:");
+		System.out.println("[1] Stwórz konto:");
+		System.out.println("[2] zaloguj:");
+		System.out.println("[3] Wyjdz:");
+		Scanner scan = new Scanner (System.in);
+		String akcja = scan.nextLine();
+		if ("1".equals(akcja)) {
+	
+			System.out.println("Podaj login");
+			String Login = scan.nextLine();
+			
+			System.out.println("Podaj hasło");
+			String Password = scan.nextLine();
+			User p1 = new User();
+			p1.setLogin(Login);
+			p1.setPassword(Password);
+			p1.setId(1);
+		}
+		else if ("2".equals(akcja)); {
+			PersonManager.readUsers(List<Users>);
+			System.out.println("Podaj login");
+			String Login = scan.nextLine();
+			System.out.println("Podaj hasło");
+			String pass = scan.nextLine();
+			if (User.containsKey(Login) && User.getLogin(Login).getPassword().equals(pass));
+			
+			Boolean doLogout = false;
+			System.out.println("[1] lista użytkowników:");
+			System.out.println("[2] Usuń użytkownika:");
+			System.out.println("[3] Dodaj książkę:");
+			System.out.println("[4] Usuń Książkę:");
+			System.out.println("[5] Edytuj Książkę:");
+			System.out.println("[6] Wyloguj:");
+			String action = scan.nextLine();
+			if ("1".equals(action)) {
+					System.out.println("login: " + User.getLogin());
+				break;
+			}
+			if ("2".equals(action)) {
+				System.out.println("Podaj login:");
+					if (!oc.removeUser(Login))
+						System.out.println("użytkownika nie ma na liœcie");
+					else
+						System.out.println("Usunięto użytkownika z listy");
+					
+			}
+			
+		}
+		
+	}
+}
