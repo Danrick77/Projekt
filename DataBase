@@ -63,7 +63,7 @@ public class UsersDataBase {
 	        	Statement statement = connection.createStatement();
 	        	statement.setQueryTimeout(30); 
 
-	        	statement.executeUpdate("DELETE FROM Person WHERE name='"+ prsn.getLogin() + "'");
+	        	statement.executeUpdate("DELETE FROM User WHERE login='"+ prsn.getLogin() + "'");
 	        
 		}
 	    	catch(SQLException e){
@@ -96,10 +96,10 @@ public class UsersDataBase {
 	         	Statement statement = connection.createStatement();
 	         	statement.setQueryTimeout(30); 
 
-	         	ResultSet resultSet = statement.executeQuery("SELECT name from Person");
+	         	ResultSet resultSet = statement.executeQuery("SELECT login from User");
 	         	while(resultSet.next())
 	         	{
-	        	 	User newUser = new User(resultSet.getString("name"));
+	        	 	User newUser = new User(resultSet.getString("login"));
 	        	 	listOfUsers.add (newUser);
 	         	}
 		}
