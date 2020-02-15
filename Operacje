@@ -2,6 +2,8 @@ import java.util.Scanner;
 
 public class Operations {
 	public static void main(String[] args) {
+		PersonManager Pm = new PersonManager();
+		BookManager Bm = new BookManager();
 		System.out.println("Wybierz opcje:");
 		System.out.println("[1] Stwórz konto:");
 		System.out.println("[2] zaloguj:");
@@ -21,7 +23,7 @@ public class Operations {
 			p1.setId(1);
 		}
 		else if ("2".equals(akcja)); {
-			PersonManager.readUsers(List<Users>);
+			PersonManager.readUsers() ;
 			System.out.println("Podaj login");
 			String Login = scan.nextLine();
 			System.out.println("Podaj hasło");
@@ -44,25 +46,38 @@ public class Operations {
 			if ("2".equals(action)) {
 				System.out.println("Podaj login:");
 					if (!oc.removeUser(Login))
-						System.out.println("użytkownika nie ma na liœcie");
+						System.out.println("użytkownika nie ma na liście");
 					else
 						System.out.println("Usunięto użytkownika z listy");
 					break;
 			}
 			if ("3".equals(action)) {
 				System.out.println("Podaj tytuł:");
-				
+				String NewTitle = scan.nextLine();
 				System.out.println("Podaj autora:");
+				String NewAuthor = scan.nextLine();
+				System.out.println("Podaj gatunek:");
+				String NewGenre = scan.nextLine();
+				if (scan.hasNextLine()) scan.nextLine();
+				Book newBook = BookManager.addBook(NewTitle,NewAuthor,NewGenre);
+				BookManager.addBook(newBook);
+			}
+			if ("4".equals(action)) {
+				System.out.println("Podaj książkę do usunięcia:");
+				String Bookremove = scan.nextLine();
+				if (scan.hasNextLine()) scan.nextLine();
+				Book Book = BookManager.removeBook(Bookremove);
+				BookManager.removeBook(Book);
+				
 			}
 			if ("6".equals(action)){ 
-			doLogout = true; 
-			doStop = true; 
+			doLogout = true;  
 			break;
 				while (doLogout == false);
 				} else {
 			System.out.println("Niewłaściwy login lub hasło");
 		}
-	} while (doStop == false);
+	} while (doLogout == false);
 	
 	System.out.println("wyjście.");
 	scan.close();
