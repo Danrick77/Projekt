@@ -10,9 +10,9 @@ public class BookManager {
 		Books = new ArrayList<Book>();
 	}
 	
-	public void addBook(String NewTitle,String NewAuthor,String NewGenre) {
-		BooksDB.addBook(String NewTitle, String NewAuthor, String NewGenre);
-		Books.add(String NewTitle, String NewAuthor, String NewGenre);
+	public void addBook(String NewTitle,String NewAuthor,String NewGenre)throws Exception {
+		BooksDB.addBook(NewTitle, NewAuthor, NewGenre);
+		Books.add( NewTitle, NewAuthor, NewGenre);
 	} 
 	
 	public Boolean removeBook (String Title) throws Exception {
