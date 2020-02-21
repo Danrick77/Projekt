@@ -1,6 +1,7 @@
+import java.util.List;
 import java.util.Scanner;
 
-public class Operations {
+public class Operacje {
 	public static void main(String[] args) {
 		PersonManager Pm = new PersonManager();
 		BookManager Bm = new BookManager();
@@ -10,26 +11,56 @@ public class Operations {
 		System.out.println("[3] Wyjdz:");
 		Scanner scan = new Scanner (System.in);
 		String akcja = scan.nextLine();
+		User logged = null;
 		if ("1".equals(akcja)) {
 	
 			System.out.println("Podaj login");
-			String Login = scan.nextLine();
-			
+			String NewLogin = scan.nextLine();
 			System.out.println("Podaj hasło");
-			String Password = scan.nextLine();
-			User p1 = new User();
-			p1.setLogin(Login);
-			p1.setPassword(Password);
-			p1.setId(1);
+			String NewPassword = scan.nextLine();
+			User p1 = new User(NewLogin, NewPassword, 1);
+			p1.setLogin(NewLogin);
+			p1.setPassword(NewPassword);
+			p1.setRole(1);
+			
 		}
 		else if ("2".equals(akcja)); {
-			PersonManager.readUsers() ;
+			try {
+				List<User> UL= Pm.readUsers();
+			} catch (Exception e1) {
+				e1.printStackTrace();
+			}
+			Boolean smh = false;
+			do {
 			System.out.println("Podaj login");
 			String Login = scan.nextLine();
 			System.out.println("Podaj hasło");
-			String pass = scan.nextLine();
-			if (User.containsKey(Login) && User.getLogin(Login).getPassword().equals(pass));
-			
+			String Pass = scan.nextLine();
+			Boolean correct = false;
+			do {
+			try {
+				for (User U: Pm.readUsers()){
+					if (U.getLogin().equals(Login) && U.getPassword().equals(Pass) && U.getRole() == 0) {
+						System.out.println("Zalogowano :D");
+						correct = true;
+						logged = U;
+						break;
+					}
+					
+				}
+				if (correct = false);
+				System.out.println("błędne dane");
+				correct = true;
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
+		}
+			while(correct == false);
+			if (logged != null) { 
+				smh = true;
+			}
+			}
+			while(smh == false);
 			Boolean doLogout = false;
 			do {
 			System.out.println("[1] lista użytkowników:");
@@ -40,15 +71,26 @@ public class Operations {
 			System.out.println("[6] Wyloguj:");
 			String action = scan.nextLine();
 			if ("1".equals(action)) {
-					System.out.println("login: " + User.getLogin());
+				try {
+					for(User U: Pm.readUsers()){
+						System.out.println("login: " + U.getLogin());
+					}
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 				break;
 			}
 			if ("2".equals(action)) {
 				System.out.println("Podaj login:");
-					if (!oc.removeUser(Login))
-						System.out.println("użytkownika nie ma na liście");
-					else
-						System.out.println("Usunięto użytkownika z listy");
+				String login = scan.next();
+					try {
+						if (!Pm.removeUser(login))
+							System.out.println("użytkownika nie ma na liście");
+						else
+							System.out.println("Usunięto użytkownika z listy");
+					} catch (Exception e) {
+						e.printStackTrace();
+					}
 					break;
 			}
 			if ("3".equals(action)) {
@@ -58,22 +100,26 @@ public class Operations {
 				String NewAuthor = scan.nextLine();
 				System.out.println("Podaj gatunek:");
 				String NewGenre = scan.nextLine();
-				if (scan.hasNextLine()) scan.nextLine();
-				Book newBook = BookManager.addBook(NewTitle,NewAuthor,NewGenre);
-				BookManager.addBook(newBook);
+				if (scan.hasNextLine());
+				try {
+					Bm.addBook(NewTitle,NewAuthor,NewGenre);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 			if ("4".equals(action)) {
 				System.out.println("Podaj książkę do usunięcia:");
 				String Bookremove = scan.nextLine();
 				if (scan.hasNextLine()) scan.nextLine();
-				Book Book = BookManager.removeBook(Bookremove);
-				BookManager.removeBook(Book);
-				
+				try {
+					Bm.removeBook(Bookremove);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
 			}
 			if ("6".equals(action)){ 
 			doLogout = true;  
 			break;
-				while (doLogout == false);
 				} else {
 			System.out.println("Niewłaściwy login lub hasło");
 		}
@@ -81,6 +127,40 @@ public class Operations {
 	
 	System.out.println("wyjście.");
 	scan.close();
+	System.out.println("[1] lista książek:");
+	String action = scan.nextLine();
+	if ("1".equals(action)) {
+		try {
+			for(Book B: Bm.readBooks()){
+				System.out.println("Book: " + B.getTitle());
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+	System.out.println("[2] szukaj po gatunku:");
+	if ("2".equals(action)) {
+		if ("2".equals(action)) {
+			System.out.println("[1] akcja:");
+			System.out.println("[2] thriller:");
+			System.out.println("[3] dramat:");
+			System.out.println("[4] horror:");
+			System.out.println("[5] mystery:");
+		}
+	System.out.println("[3] wyszukaj książkę:");
+	String BookTitle = scan.nextLine();
+	System.out.println("[4] Wyloguj:");
+	if ("4".equals(action)){ 
+		doLogout = true;  
+	//break;
+			} else {
+		System.out.println("Niewłaściwy login lub hasło");
+			}
+					}
+				}
+	
+	
+	
+	
+			}
 		}
 	}
-}
