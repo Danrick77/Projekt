@@ -15,7 +15,7 @@ public class PersonManager {
 		Users.add(p);
 	}
 	
-	public Boolean removePerson (String Login) throws Exception {
+	public Boolean removeUser (String Login) throws Exception {
 		User tempUser = null;
 		for (User p : Users)
 			if (p.getLogin().equals(Login)) {
@@ -35,7 +35,7 @@ public class PersonManager {
 		Users.remove(p);
 	}
 	
-	public List<User> readUsers() throws Exception {
+	public  List<User> readUsers() throws Exception {
 		this.Users = UsersDB.getUsers();
 		return this.Users;
 	}
