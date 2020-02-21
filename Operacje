@@ -127,7 +127,11 @@ public class Operacje {
 	
 	System.out.println("wyjście.");
 	scan.close();
+	
 	System.out.println("[1] lista książek:");
+	System.out.println("[2] wyszukaj po gatunku:");
+	System.out.println("[3] wyszukaj :");
+	System.out.println("[4] lista książek:");
 	String action = scan.nextLine();
 	if ("1".equals(action)) {
 		try {
@@ -157,10 +161,6 @@ public class Operacje {
 			}
 					}
 				}
-	
-	
-	
-	
 			}
 		}
 	}
