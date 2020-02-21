@@ -2,7 +2,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class BookManager {
-	public List<Book> Books;
+	public List<Book> Books = new ArrayList<>();
 	private BooksDataBase BooksDB;
 	
 	public BookManager () {
@@ -12,7 +12,8 @@ public class BookManager {
 	
 	public void addBook(String NewTitle,String NewAuthor,String NewGenre)throws Exception {
 		BooksDB.addBook(NewTitle, NewAuthor, NewGenre);
-		Books.add( NewTitle, NewAuthor, NewGenre);
+		Book NewBook = new Book(NewTitle, NewAuthor, NewGenre);
+		Books.add(NewBook);
 	} 
 	
 	public Boolean removeBook (String Title) throws Exception {
