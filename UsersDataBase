@@ -27,12 +27,12 @@ public class UsersDataBase {
 		Connection connection = null;
 		try {
 			Class.forName("org.sqlite.JDBC");
-	        	connection = DriverManager.getConnection("jdbc:sqlite:D:\\bazy\\\\MOJABAZADOPROJEKTU.db");
+	        	connection = DriverManager.getConnection("jdbc:sqlite:D:\\JAVA\\Db\\dbforproject.db");
 
 	        	Statement statement = connection.createStatement();
 	        	statement.setQueryTimeout(30); 
 
-	        	statement.executeUpdate("INSERT INTO Users values('"+prsn.getLogin()+"')");
+	        	statement.executeUpdate("INSERT INTO Users (Login, Password) VALUES (NewLogin, NewPassword)");
 	        
 		}
 	    	catch(SQLException e){
@@ -58,7 +58,7 @@ public class UsersDataBase {
 		Connection connection = null;
 		try {
 			Class.forName("org.sqlite.JDBC");
-	        	connection = DriverManager.getConnection("jdbc:sqlite:D:\\bazy\\\\MOJABAZADOPROJEKTU.db");
+	        	connection = DriverManager.getConnection("jdbc:sqlite:D:\\JAVA\\Db\\dbforproject.db");
 
 	        	Statement statement = connection.createStatement();
 	        	statement.setQueryTimeout(30); 
@@ -91,15 +91,15 @@ public class UsersDataBase {
 		Connection connection = null;
 		try {
 			Class.forName("org.sqlite.JDBC");
-	         	connection = DriverManager.getConnection("jdbc:sqlite:D:\\bazy\\MOJABAZADOPROJEKTU.db");
+	         	connection = DriverManager.getConnection("jdbc:sqlite:D:\\JAVA\\Db\\dbforproject.db");
 
 	         	Statement statement = connection.createStatement();
 	         	statement.setQueryTimeout(30); 
 
-	         	ResultSet resultSet = statement.executeQuery("SELECT login from User");
+	         	ResultSet resultSet = statement.executeQuery("SELECT Login, Password from Users");
 	         	while(resultSet.next())
 	         	{
-	        	 	User newUser = new User(resultSet.getString("login"));
+	        	 	User newUser = new User(resultSet.getString("Login"), resultSet.getString("Password"), 0);
 	        	 	listOfUsers.add (newUser);
 	         	}
 		}
