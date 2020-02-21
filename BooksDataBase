@@ -23,19 +23,16 @@ import java.sql.SQLException;
 import java.sql.Statement;
 
 public class BooksDataBase {
-	public void addBook(String newTitle, String NewAuthor,String NewGenre) throws Exception {
+	public void addBook(String NewTitle, String NewAuthor,String NewGenre) throws Exception {
 		Connection connection = null;
 		try {
 			Class.forName("org.sqlite.JDBC");
-	        	connection = DriverManager.getConnection("jdbc:sqlite:D:\\bazy\\\\MOJABAZADOPROJEKTU.db");
+	        	connection = DriverManager.getConnection("jdbc:sqlite:D:\\JAVA\\Db\\dbforproject.db");
 
 	        	Statement statement = connection.createStatement();
 	        	statement.setQueryTimeout(30); 
 
-	        	statement.executeUpdate("INSERT INTO Books values('"+newTitle.getTitle()+"')");
-	        	statement.executeUpdate("INSERT INTO Books values('"+NewAuthor.getAuthor()+"')");
-	        	statement.executeUpdate("INSERT INTO Books values('"+NewGenre.getGenre()+"')");
-	        
+	        	statement.executeUpdate("INSERT INTO Books (Title, Author, Genre) VALUES ("+NewTitle+", "+NewAuthor+", "+NewGenre+"");
 		}
 	    	catch(SQLException e){
 	    	 	System.err.println(e.getMessage());
@@ -60,12 +57,12 @@ public class BooksDataBase {
 		Connection connection = null;
 		try {
 			Class.forName("org.sqlite.JDBC");
-	        	connection = DriverManager.getConnection("jdbc:sqlite:D:\\bazy\\\\MOJABAZADOPROJEKTU.db");
+	        	connection = DriverManager.getConnection("jdbc:sqlite:D:\\JAVA\\Db\\dbforproject.db");
 
 	        	Statement statement = connection.createStatement();
 	        	statement.setQueryTimeout(30); 
 
-	        	statement.executeUpdate("DELETE FROM Book WHERE Name='"+ prsn.getTitle() + "'");
+	        	statement.executeUpdate("DELETE FROM Books WHERE Title='"+ prsn.getTitle() + "'");
 	        
 		}
 	    	catch(SQLException e){
@@ -93,16 +90,16 @@ public class BooksDataBase {
 		Connection connection = null;
 		try {
 			Class.forName("org.sqlite.JDBC");
-	         	connection = DriverManager.getConnection("jdbc:sqlite:D:\\bazy\\MOJABAZADOPROJEKTU.db");
+	         	connection = DriverManager.getConnection("jdbc:sqlite:D:\\JAVA\\Db\\dbforproject.db");
 
 	         	Statement statement = connection.createStatement();
 	         	statement.setQueryTimeout(30); 
 
-	         	ResultSet resultSet = statement.executeQuery("SELECT Name from Book");
+	         	ResultSet resultSet = statement.executeQuery("SELECT Title from Books");
 	         	while(resultSet.next())
 	         	{
-	        	 	Book newBook = new Book(resultSet.getString("Name"));
-	        	 	listOfBooks.add (newBook);
+	        	 	Book newBook = new Book (resultSet.getString("Title") ,null , null);
+	        	 	listOfBooks.add(newBook);
 	         	}
 		}
 	    	catch(SQLException e){
