@@ -12,6 +12,7 @@ public class Operacje {
 		Scanner scan = new Scanner (System.in);
 		String akcja = scan.nextLine();
 		User logged = null;
+		int Role = 0;
 		if ("1".equals(akcja)) {
 	
 			System.out.println("Podaj login");
@@ -22,7 +23,6 @@ public class Operacje {
 			p1.setLogin(NewLogin);
 			p1.setPassword(NewPassword);
 			p1.setRole(1);
-			
 		}
 		else if ("2".equals(akcja)); {
 			try {
@@ -40,17 +40,19 @@ public class Operacje {
 			do {
 			try {
 				for (User U: Pm.readUsers()){
-					if (U.getLogin().equals(Login) && U.getPassword().equals(Pass) && U.getRole() == 0) {
+					if (U.getLogin().equals(Login) && U.getPassword().equals(Pass)) {
 						System.out.println("Zalogowano :D");
 						correct = true;
 						logged = U;
+						Role = U.getRole();
 						break;
 					}
 					
-				}
-				if (correct = false);
+				if (correct = false) {
 				System.out.println("błędne dane");
-				correct = true;
+				break;
+				}
+				}
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
@@ -62,6 +64,7 @@ public class Operacje {
 			}
 			while(smh == false);
 			Boolean doLogout = false;
+			if(Role == 0) {
 			do {
 			System.out.println("[1] lista użytkowników:");
 			System.out.println("[2] Usuń użytkownika:");
@@ -119,15 +122,18 @@ public class Operacje {
 			}
 			if ("6".equals(action)){ 
 			doLogout = true;  
+			System.out.println("wyjście.");
+			scan.close();
 			break;
+			
 				} else {
 			System.out.println("Niewłaściwy login lub hasło");
 		}
-	} while (doLogout == false);
+} while (doLogout == false);
+			}
 	
-	System.out.println("wyjście.");
-	scan.close();
-	
+			if(Role == 1) {
+				do {
 	System.out.println("[1] lista książek:");
 	System.out.println("[2] wyszukaj po gatunku:");
 	System.out.println("[3] wyszukaj :");
@@ -141,26 +147,23 @@ public class Operacje {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-	System.out.println("[2] szukaj po gatunku:");
-	if ("2".equals(action)) {
-		if ("2".equals(action)) {
-			System.out.println("[1] akcja:");
-			System.out.println("[2] thriller:");
-			System.out.println("[3] dramat:");
-			System.out.println("[4] horror:");
-			System.out.println("[5] mystery:");
-		}
-	System.out.println("[3] wyszukaj książkę:");
-	String BookTitle = scan.nextLine();
-	System.out.println("[4] Wyloguj:");
-	if ("4".equals(action)){ 
-		doLogout = true;  
-	//break;
-			} else {
-		System.out.println("Niewłaściwy login lub hasło");
-			}
+									System.out.println("[2] szukaj po gatunku:");
+									if ("2".equals(action)) {
+									System.out.println("[1] akcja:");
+									System.out.println("[2] thriller:");
+									System.out.println("[3] dramat:");
+									System.out.println("[4] horror:");
+									System.out.println("[5] mystery:");
+								}	
+							System.out.println("[3] wyszukaj książkę:");
+							String BookTitle = scan.nextLine();
+							System.out.println("[4] Wyloguj:");
+							if ("4".equals(action)){ 
+							doLogout = true;
+						}
 					}
-				}
+				} while (doLogout == false);
 			}
 		}
 	}
+}
