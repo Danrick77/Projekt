@@ -3,8 +3,10 @@ public class Book {
 String Title;
 	
 	public
-	Book(String string) {
-		this.Title=string;
+	Book(String Title, String Author, String Genre) {
+		this.Title=Title;
+		this.Author=Author;
+		this.Genre=Genre;
 	}
 
 
@@ -56,4 +58,10 @@ String Title;
 	
 	}
 	public String Genre;
+
+	public static void remove(Book Title) {
+		
+	}
+	public void add(Book Title, Book Author, Book Genre) {
+	}
 }
