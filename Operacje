@@ -12,7 +12,7 @@ public class Operacje {
 		Scanner scan = new Scanner (System.in);
 		String akcja = scan.nextLine();
 		User logged = null;
-		int Role = 0;
+		int Role = 1;
 		if ("1".equals(akcja)) {
 	
 			System.out.println("Podaj login");
@@ -81,7 +81,6 @@ public class Operacje {
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
-				break;
 			}
 			if ("2".equals(action)) {
 				System.out.println("Podaj login:");
@@ -132,7 +131,7 @@ public class Operacje {
 } while (doLogout == false);
 			}
 	
-			if(Role == 1) {
+			if(Role == 0) {
 				do {
 	System.out.println("[1] lista książek:");
 	System.out.println("[2] wyszukaj po gatunku:");
@@ -147,14 +146,38 @@ public class Operacje {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}
-									System.out.println("[2] szukaj po gatunku:");
 									if ("2".equals(action)) {
 									System.out.println("[1] akcja:");
 									System.out.println("[2] thriller:");
 									System.out.println("[3] dramat:");
 									System.out.println("[4] horror:");
-									System.out.println("[5] mystery:");
+									System.out.println("[5] fantasy:");
+									String gn = scan.nextLine();
+									if("1".contentEquals(gn)) {
+									String	GN = dramat;
+										try {
+											for (Book B: Bm.readBooks()){
+												if (B.getGenre().contentEquals(GN)) {
+													System.out.println("książki z gatunku:" + B.getTitle());
+													break;
+												}
+}
+										} catch (Exception e) {
+											e.printStackTrace();
+										}
 								}	
+									if("2".contentEquals(gn)) {
+										String	GN = thriller;
+											try {
+												for (Book B: Bm.readBooks()){
+													if (B.getGenre().contentEquals(GN)) {
+														break;
+													}
+	}
+											} catch (Exception e) {
+												e.printStackTrace();
+											}
+									}	
 							System.out.println("[3] wyszukaj książkę:");
 							String BookTitle = scan.nextLine();
 							System.out.println("[4] Wyloguj:");
@@ -162,8 +185,9 @@ public class Operacje {
 							doLogout = true;
 						}
 					}
-				} while (doLogout == false);
-			}
+				}
+			} while (doLogout == false);
 		}
 	}
+}
 }
