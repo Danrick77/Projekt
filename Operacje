@@ -64,7 +64,7 @@ public class Operacje {
 			}
 			while(smh == false);
 			Boolean doLogout = false;
-			if(Role == 0) {
+			if(Role == 1) {
 			do {
 			System.out.println("[1] lista użytkowników:");
 			System.out.println("[2] Usuń użytkownika:");
@@ -135,8 +135,8 @@ public class Operacje {
 				do {
 	System.out.println("[1] lista książek:");
 	System.out.println("[2] wyszukaj po gatunku:");
-	System.out.println("[3] wyszukaj :");
-	System.out.println("[4] lista książek:");
+	System.out.println("[3] wyszukaj:");
+	System.out.println("[4] Wyloguj");
 	String action = scan.nextLine();
 	if ("1".equals(action)) {
 		try {
@@ -154,40 +154,51 @@ public class Operacje {
 									System.out.println("[5] fantasy:");
 									String gn = scan.nextLine();
 									if("1".contentEquals(gn)) {
-									String	GN = dramat;
+								
 										try {
 											for (Book B: Bm.readBooks()){
-												if (B.getGenre().contentEquals(GN)) {
-													System.out.println("książki z gatunku:" + B.getTitle());
+													System.out.println("książki z gatunku:" + B.getTitle().contains("akcja"));
 													break;
 												}
 }
-										} catch (Exception e) {
+										 catch (Exception e) {
 											e.printStackTrace();
 										}
 								}	
-									if("2".contentEquals(gn)) {
-										String	GN = thriller;
+									if("5".contentEquals(gn)) {
+										
 											try {
 												for (Book B: Bm.readBooks()){
-													if (B.getGenre().contentEquals(GN)) {
+													System.out.println("książki z gatunku:" +B.getTitle() +B.getGenre().contains("fantasy"));
 														break;
 													}
 	}
-											} catch (Exception e) {
+											 catch (Exception e) {
 												e.printStackTrace();
 											}
 									}	
-							System.out.println("[3] wyszukaj książkę:");
-							String BookTitle = scan.nextLine();
+									if ("3".contentEquals(action)) {
+							System.out.println("wyszukaj książkę:");
+							String mytitle = scan.nextLine();
+							try {
+								for (Book B: Bm.readBooks()){
+									System.out.println(B.getTitle().contains(mytitle));
+										break;
+									}
+}
+							 catch (Exception e) {
+								e.printStackTrace();
+							}
+							
 							System.out.println("[4] Wyloguj:");
 							if ("4".equals(action)){ 
 							doLogout = true;
+							}
 						}
 					}
 				}
 			} while (doLogout == false);
 		}
 	}
-}
+	}
 }
